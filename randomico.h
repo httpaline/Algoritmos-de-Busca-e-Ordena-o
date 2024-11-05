@@ -21,10 +21,6 @@ void randomico(int taminst, FILE* entrada, FILE* saida) {
     fs::path saidaPath = basePath / "ArquivosSaida" / "Randomico";
     fs::path tempoPath = basePath / "ArquivosTempo" / "Randomico";
 
-    fs::remove_all(entradaPath);
-    fs::remove_all(saidaPath);
-    fs::remove_all(tempoPath);
-
     fs::create_directories(entradaPath);
     fs::create_directories(saidaPath);
     fs::create_directories(tempoPath);
@@ -69,6 +65,8 @@ void randomico(int taminst, FILE* entrada, FILE* saida) {
             break;       
     }
 
+    cout << "Gerando entrada randomica com " << n << " elementos." << endl;
+
     vet = new int[n];
     srand((unsigned)time(0));
     entrada = fopen(arq1.string().c_str(), "w");
@@ -79,10 +77,16 @@ void randomico(int taminst, FILE* entrada, FILE* saida) {
     }
     fclose(entrada);
 
+    //cout << "Entrada randomica gerada em: " << arq1 << endl;
+
+    cout << "Ordenando com o algoritmo Insertion Sort..." << endl;
+
     Comeco = clock();
     insertionSort(vet, n);
     Fim = clock();
     tempexec = ((Fim - Comeco) / (double)CLOCKS_PER_SEC);
+
+    cout << "Ordenação concluída em " << tempexec << " segundos." << endl;
 
     saida = fopen(arq2.string().c_str(), "w");
     fprintf(saida, "%d\n", n);
@@ -91,11 +95,17 @@ void randomico(int taminst, FILE* entrada, FILE* saida) {
     }
     fclose(saida);
 
+    //cout << "Arquivo de saída gerado em: " << arq2 << endl;
+
     entrada = fopen(arq3.string().c_str(), "w");
     fprintf(entrada, "O TEMPO DE EXECUCAO FOI: %.50f", tempexec);
     fclose(entrada);
 
+    //cout << "Arquivo de tempo de execução gerado em: " << arq3 << endl;
+
     delete[] vet;
+
+    cout << "Processo finalizado." << endl;
 }
 
 #endif // RANDOMICO_H

@@ -7,16 +7,11 @@
 using namespace std;
 
 int main() {
-    int opcao, entrada_inst, entrada_CDA;
+    int opcao, entrada_inst, entrada_CDR;
 
     while (true) {
         menu();
         cin >> opcao;
-
-        if (opcao == 2) {
-            cout << "Saindo do programa..." << endl;
-            break;
-        }
 
         if (opcao == 1) { // Insertion Sort
             menu_instancia();
@@ -27,29 +22,30 @@ int main() {
                 continue;
             }
 
-            menu_CDA();
-            cin >> entrada_CDA;
+            menu_CDR();
+            cin >> entrada_CDR;
 
-            switch (entrada_CDA) {
+            switch (entrada_CDR) {
                 case 1:
-                    cout << "Gerando entrada crescente..." << endl;
                     crescente(entrada_inst, nullptr, nullptr);
                     break;
                 case 2:
-                    cout << "Gerando entrada decrescente..." << endl;
                     decrescente(entrada_inst, nullptr, nullptr);
                     break;
                 case 3:
-                    cout << "Gerando entrada randomica..." << endl;
                     randomico(entrada_inst, nullptr, nullptr);
                     break;
                 default:
-                    cout << "Tipo de entrada invalido." << endl;
+                    cout << "Erro! Tipo de entrada invalido." << endl;
                     break;
             }
-        } else {
-            cout << "Opcao invalida. Tente novamente." << endl;
+        }else if(opcao==2){
+            cout << "Saindo do programa..." << endl;
+            break;
+        }else{
+            cout<< "Erro! Digite uma opcao valida." << endl;
         }
+        
     }
 
     return 0;
