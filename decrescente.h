@@ -1,7 +1,8 @@
 #ifndef DECRESCENTE_H
 #define DECRESCENTE_H
 
-#include "algoritmo.h"        
+#include "algoritmo.h" 
+#include "classe.h"       
 #include <fstream>
 #include <filesystem>
 #include <cstdlib>
@@ -12,12 +13,19 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-void decrescente(int taminst, FILE* entrada, FILE* saida) {
+void decrescente(int taminst, FILE* entrada, FILE* saida, Algoritmo alg) {
     double tempexec;
     time_t Comeco, Fim;
     int n = 0, seed = (rand() % 1000000) * 100, *vet;
 
-    fs::path basePath = fs::current_path() / "InsertionSort";
+    std::string algoritmoNome;
+    switch (alg) {
+        case Algoritmo::Insertion: algoritmoNome = "InsertionSort"; break;
+        case Algoritmo::Selection: algoritmoNome = "SelectionSort"; break;
+        case Algoritmo::Shell: algoritmoNome = "ShellSort"; break;
+        case Algoritmo::Bubble: algoritmoNome = "BubbleSort"; break;
+    }
+    fs::path basePath = fs::current_path() / algoritmoNome;
     fs::path entradaPath = basePath / "ArquivosEntrada" / "Decrescente";
     fs::path saidaPath = basePath / "ArquivosSaida" / "Decrescente";
     fs::path tempoPath = basePath / "ArquivosTempo" / "Decrescente";
@@ -65,7 +73,9 @@ void decrescente(int taminst, FILE* entrada, FILE* saida) {
             arq3 = tempoPath / "1000000TEMPO.txt";
             break;       
     }
+
     cout << "Gerando entrada decrescente com " << n << " elementos." << endl;
+
     vet = new int[n];
     entrada = fopen(arq1.string().c_str(), "w");
     fprintf(entrada, "%d\n", n);
@@ -75,16 +85,25 @@ void decrescente(int taminst, FILE* entrada, FILE* saida) {
     }
     fclose(entrada);
 
-    //cout << "Entrada decrescente gerada em: " << arq1 << endl;
-
-    cout << "Ordenando com o algoritmo Insertion Sort..." << endl;
+    cout << "Ordenando com o algoritmo " << algoritmoNome << "..." << endl;
 
     Comeco = clock();
-    insertionSort(vet, n);
+    switch (alg) {
+        case Algoritmo::Insertion:
+            insertionSort(vet, n);
+            break;
+        case Algoritmo::Selection:
+            SelectionSort(vet, n);
+            break;
+        case Algoritmo::Shell:
+            ShellSort(vet, n);
+            break;
+        case Algoritmo::Bubble:
+            BubbleSort(vet, n);
+            break;
+    }
     Fim = clock();
     tempexec = ((Fim - Comeco) / (double)CLOCKS_PER_SEC);
-
-    cout << "Ordenação concluída em " << tempexec << " segundos." << endl;
 
     saida = fopen(arq2.string().c_str(), "w");
     fprintf(saida, "%d\n", n);
@@ -93,16 +112,12 @@ void decrescente(int taminst, FILE* entrada, FILE* saida) {
     }
     fclose(saida);
 
-    //cout << "Arquivo de saída gerado em: " << arq2 << endl;
-
     entrada = fopen(arq3.string().c_str(), "w");
     fprintf(entrada, "O TEMPO DE EXECUCAO FOI: %.50f", tempexec);
     fclose(entrada);
 
-    //cout << "Arquivo de tempo de execução gerado em: " << arq3 << endl;
-
     delete[] vet;
-
+    
     cout << "Processo finalizado." << endl;
 }
 
