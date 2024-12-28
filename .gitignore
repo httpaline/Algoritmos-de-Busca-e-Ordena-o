@@ -4,4 +4,5 @@
 /SelectionSort
 /ShellSort
 /BubbleSort
-main.exe
+/MergeSort
+/build

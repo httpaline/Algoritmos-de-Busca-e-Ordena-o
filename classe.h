@@ -5,7 +5,9 @@ enum class Algoritmo {
     Insertion,
     Selection,
     Shell,
-    Bubble
+    Bubble,
+    Merge
+    
 };
 
 #endif // TIPO_ALGORITMO_H

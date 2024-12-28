@@ -29,6 +29,9 @@ int main() {
                 alg = Algoritmo::Bubble;
                 break;
             case 5:
+                alg = Algoritmo::Merge;
+                break;    
+            case 6:
                 cout << "Saindo do programa..." << endl;
                 return 0;
             default:

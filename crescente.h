@@ -24,6 +24,7 @@ void crescente(int taminst, FILE* entrada, FILE* saida, Algoritmo alg) {
         case Algoritmo::Selection: algoritmoNome = "SelectionSort"; break;
         case Algoritmo::Shell: algoritmoNome = "ShellSort"; break;
         case Algoritmo::Bubble: algoritmoNome = "BubbleSort"; break;
+        case Algoritmo::Merge: algoritmoNome = "MergeSort"; break;
     }
     fs::path basePath = fs::current_path() / algoritmoNome;
     fs::path entradaPath = basePath / "ArquivosEntrada" / "Crescente";
@@ -101,7 +102,10 @@ void crescente(int taminst, FILE* entrada, FILE* saida, Algoritmo alg) {
         case Algoritmo::Bubble:
             BubbleSort(vet, n);
             break;
-    }
+        case Algoritmo::Merge:
+            MergeSort(vet, 0, n-1);    
+        }
+
     Fim = clock();
     tempexec = ((Fim - Comeco) / (double)CLOCKS_PER_SEC);
 
