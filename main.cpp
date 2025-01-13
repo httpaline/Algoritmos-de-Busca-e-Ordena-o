@@ -2,7 +2,7 @@
 #include "menu.h"
 #include "crescente.h"
 #include "decrescente.h"
-#include "randomico.h"  
+#include "randomico.h"
 #include "classe.h"
 
 using namespace std;
@@ -15,7 +15,7 @@ int main() {
         menu();
         cin >> opcao;
 
-        switch(opcao){
+        switch(opcao) {
             case 1: 
                 alg = Algoritmo::Insertion;
                 break;
@@ -32,6 +32,15 @@ int main() {
                 alg = Algoritmo::Merge;
                 break;    
             case 6:
+                alg = Algoritmo::Quick_v1; 
+                break;
+            case 7:
+                alg = Algoritmo::Quick_v2; 
+                break;
+            case 8:
+                alg = Algoritmo::Quick_v3; 
+                break;
+            case 9:
                 cout << "Saindo do programa..." << endl;
                 return 0;
             default:

@@ -25,6 +25,9 @@ void crescente(int taminst, FILE* entrada, FILE* saida, Algoritmo alg) {
         case Algoritmo::Shell: algoritmoNome = "ShellSort"; break;
         case Algoritmo::Bubble: algoritmoNome = "BubbleSort"; break;
         case Algoritmo::Merge: algoritmoNome = "MergeSort"; break;
+        case Algoritmo::Quick_v1: algoritmoNome = "QuickSort (Versão 1)"; break;
+        case Algoritmo::Quick_v2: algoritmoNome = "QuickSort (Versão 2 - Mediana de Três)"; break;
+        case Algoritmo::Quick_v3: algoritmoNome = "QuickSort (Versão 3 - Pivô Aleatório)"; break;
     }
     fs::path basePath = fs::current_path() / algoritmoNome;
     fs::path entradaPath = basePath / "ArquivosEntrada" / "Crescente";
@@ -103,11 +106,22 @@ void crescente(int taminst, FILE* entrada, FILE* saida, Algoritmo alg) {
             BubbleSort(vet, n);
             break;
         case Algoritmo::Merge:
-            MergeSort(vet, 0, n-1);    
-        }
+            MergeSort(vet, 0, n - 1);
+            break;
+        case Algoritmo::Quick_v1:
+            QuickSort_v1(vet, 0, n - 1);
+            break;
+        case Algoritmo::Quick_v2:
+            QuickSort_v2(vet, 0, n - 1);
+            break;
+        case Algoritmo::Quick_v3:
+            QuickSort_v3(vet, 0, n - 1);
+            break;
+    }
 
     Fim = clock();
-    tempexec = ((Fim - Comeco) / (double)CLOCKS_PER_SEC);
+    
+    tempexec = (static_cast<double>(Fim) - static_cast<double>(Comeco)) / static_cast<double>(CLOCKS_PER_SEC);
 
     saida = fopen(arq2.string().c_str(), "w");
     fprintf(saida, "%d\n", n);

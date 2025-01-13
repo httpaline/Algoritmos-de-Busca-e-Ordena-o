@@ -6,8 +6,10 @@ enum class Algoritmo {
     Selection,
     Shell,
     Bubble,
-    Merge
-    
+    Merge,
+    Quick_v1,  
+    Quick_v2,  
+    Quick_v3  
 };
 
 #endif // TIPO_ALGORITMO_H

@@ -19,7 +19,13 @@ void menu() {
     cout << " -----------------------------------------" << endl;
     cout << " 5 - Merge Sort" << endl;
     cout << " -----------------------------------------" << endl;
-    cout << " 6 - Sair" << endl;
+    cout << " 6 - QuickSort (Versão 1 - Primeiro Pivô)" << endl;
+    cout << " -----------------------------------------" << endl;
+    cout << " 7 - QuickSort (Versão 2 - Mediana de Três)" << endl;
+    cout << " -----------------------------------------" << endl;
+    cout << " 8 - QuickSort (Versão 3 - Pivô Aleatório)" << endl;
+    cout << " -----------------------------------------" << endl;
+    cout << " 9 - Sair" << endl;
     cout << "===========================================" << endl;
 }
 
